@@ -2,6 +2,18 @@ from colorama import Fore, Style, init
 
 init()
 
+import sys
+import time
+
+def fake_progress_bar():
+    print("Checking password vibes...\n")
+    for i in range(0, 101, 10):
+        bar = "▓" * (i // 10) + "░" * (10 - i // 10)
+        sys.stdout.write(f"\r[{bar}] {i}%")
+        sys.stdout.flush()
+        time.sleep(0.15)
+    print("\n")
+
 def password_checker(password):
     strength = 0
     feedback = []
@@ -29,13 +41,14 @@ def password_checker(password):
     strength_meter = int((strength / 5) * 100)
     
     if strength == 5:
-        return Fore.GREEN + "password is strong as hell bruhhh😏👌🔥\n" + f"password strenght: {strength_meter}% 💪\n" + Style.RESET_ALL 
+        return Fore.GREEN + "password is strong as hell bruhhh😏👌🔥\n- " + f"password strenght: {strength_meter}% 💪\n- " + Style.RESET_ALL 
     elif strength == 3:
-        return Fore.YELLOW + "password is mid ngl👀\nMissing:\n- " + f"password strenght: {strength_meter}% 💪\n" + "\n- ".join(feedback) + Style.RESET_ALL
+        return Fore.YELLOW + "password is mid ngl👀\nMissing:\n- " + f"password strenght: {strength_meter}% 💪\n- " + "\n- ".join(feedback) + Style.RESET_ALL
     else:
-        return Fore.RED + "dude just what is this bruh?? go change it✏️😭🙏🏼\nMissing:\n- " + f"password strenght: {strength_meter}% 💪\n" + "\n- ".join(feedback) + Style.RESET_ALL
+        return Fore.RED + "dude just what is this bruh?? go change it✏️😭🙏🏼\nMissing:\n- " + f"password strenght: {strength_meter}% 💪\n- " + "\n- ".join(feedback) + Style.RESET_ALL
 
 #real one!
 user_input = input("Enter your pasword, lets see😏 : ")
+fake_progress_bar()
 result = password_checker(user_input)
 print(result)      
