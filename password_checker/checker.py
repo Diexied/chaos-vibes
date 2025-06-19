@@ -36,7 +36,7 @@ def password_checker(password):
     if any(char in "!@#$%^&*()><?}{|" for char in password):
         strength += 1
     else:
-        feedback.append("add some cute details bruh!!")
+        feedback.append("add some cute details!!!😤")
         
     strength_meter = int((strength / 5) * 100)
     
